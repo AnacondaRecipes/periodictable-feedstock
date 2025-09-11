@@ -1,35 +1,48 @@
 {% set name = "periodictable" %}
-{% set version = "1.7.1" %}
-{% set sha256 = "43d7db7233d6b33962f83d79ea54f47c3b923d3e83403cbc03f58f353af4b52c" %}
+{% set version = "2.0.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://github.com/python-periodictable/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 5a8aed4759e74dabb38fda0ecbe59b6f7fef42b0babf83f25d8dfaee3c6798f8
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python
     - setuptools
+    - wheel
   run:
-    - python >=3.8
+    - python
     - numpy
     - pyparsing
 
 test:
+  source_files:
+    - test
   imports:
     - periodictable
-    - periodictable.density
+    - periodictable.activation
+    - periodictable.constants
+    - periodictable.core
+    - periodictable.crystal_structure
+    - periodictable.formulas
+    - periodictable.nsf
+    - periodictable.xsf
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v test
 
 about:
   home: http://www.reflectometry.org/danse/elements.html
