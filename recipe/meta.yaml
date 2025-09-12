@@ -11,6 +11,7 @@ source:
 
 build:
   number: 0
+  skip: true # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
@@ -45,17 +46,18 @@ test:
     - pytest -v test
 
 about:
-  home: http://www.reflectometry.org/danse/elements.html
-  license: Public domain
-  summary: 'Extensible periodic table for python'
-
+  home: https://github.com/python-periodictable/periodictable
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: License.txt
+  summary: This package provides a periodic table of the elements with support for mass, density and xray/neutron scattering information.
   description: |
     The periodictable package provides an extensible periodic table
     of the elements prepopulated with data important to neutron and
     X-ray scattering experiments. With the elements pacakge you can
     compute the scattering potential of a compound at a given wavelength.
-  doc_url: http://www.reflectometry.org/danse/docs/elements/
-  dev_url: https://github.com/pkienzle/periodictable
+  doc_url: https://periodictable.readthedocs.io
+  dev_url: https://github.com/python-periodictable/periodictable
 
 extra:
   recipe-maintainers:
