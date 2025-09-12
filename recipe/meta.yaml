@@ -49,7 +49,7 @@ about:
   home: https://github.com/python-periodictable/periodictable
   license: Unlicense
   license_family: PUBLIC-DOMAIN
-  license_file: License.txt
+  license_file: LICENSE.txt
   summary: This package provides a periodic table of the elements with support for mass, density and xray/neutron scattering information.
   description: |
     The periodictable package provides an extensible periodic table
